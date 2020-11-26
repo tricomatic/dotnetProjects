@@ -27,7 +27,7 @@ namespace Commander.Controllers
         [HttpGet("{id}")]
         public ActionResult <Student> GetStudentById(int id)
         {
-            var student = _repository.GetStudentById(id);
+            var student = _repository.GetStudentById(id); 
             return Ok(student);
         }
 
