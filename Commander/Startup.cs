@@ -1,16 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Commander.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Commander
 {
@@ -26,8 +22,12 @@ namespace Commander
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<StudentContext>(opt => opt.UseMySql
+            (Configuration.GetConnectionString("StudentConnection"),
+            new MariaDbServerVersion(new Version(10,5,8)),
+            mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend)));
             services.AddControllers();
-            services.AddScoped<IStudentRepo, MockStudentRepo>();
+            services.AddScoped<IStudentRepo, SqlStudentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

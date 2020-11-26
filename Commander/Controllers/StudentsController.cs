@@ -30,7 +30,15 @@ namespace Commander.Controllers
             var student = _repository.GetStudentById(id);
             return Ok(student);
         }
+
+        [HttpGet("parents/{id}")]
+        public ActionResult <Parent> GetParentByStudentId(int id)
+        {
+            var parent = _repository.GetParentByStudentId(id);
+            return Ok(parent);
+        }
     }
+
 }
 
 // look into binding sources on microsoft docs

@@ -16,6 +16,11 @@ namespace Commander.Data
             return students;
         }
 
+        public Parent GetParentByStudentId(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Student GetStudentById(int id)
         {
             return new Student{Id = 0, FName = "Yafet", LName = "Kubrom", EUID = "yak0101", Major = "Computer Science"};

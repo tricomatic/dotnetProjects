@@ -8,6 +8,7 @@ namespace Commander.Data
     {
         IEnumerable<Student> GetAllStudents();
         Student GetStudentById(int id);
+        Parent GetParentByStudentId(int id);
         
     }
 }
